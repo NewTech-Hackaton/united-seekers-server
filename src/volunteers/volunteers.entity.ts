@@ -10,18 +10,15 @@ export class Volunteer {
     id: string;
 
     @Column({type: "varchar", nullable: false})
-    firstname: string;
+    name: string;
 
-    @Column({type: "varchar", nullable: true})
-    lastname: string;
-
-    @Column({type: "varchar", nullable: false})
+    @Column({type: "varchar", nullable: false, unique: true})
     email: string;
 
     @Column({type: "varchar", nullable: false})
-    phoneNumber: string;
+    password: string;
 
-    @Column({type: "boolean", default: false})
+    @Column({type: "boolean", default: true})
     isVerified: boolean;
 
     @Column({type: "boolean", default: false})
