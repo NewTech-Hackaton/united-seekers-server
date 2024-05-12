@@ -1,4 +1,4 @@
-import {Body, Controller, HttpException, HttpStatus, Post} from '@nestjs/common';
+import {Body, Controller, HttpException, HttpStatus, Post, UsePipes, ValidationPipe} from '@nestjs/common';
 import {AuthService} from "./auth.service";
 import {RegistrationDto} from "./dto/registration.dto";
 import {LoginDto} from "./dto/login.dto";
@@ -11,6 +11,7 @@ export class AuthController {
     constructor(private readonly authService: AuthService) {
     }
 
+    @UsePipes(ValidationPipe)
     @Post("/registration")
     async registration(@Body() registrationDto: RegistrationDto): Promise<[Token, Volunteer]> {
         try {
