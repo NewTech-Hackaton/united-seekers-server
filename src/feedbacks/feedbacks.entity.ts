@@ -1,5 +1,14 @@
-import {Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn} from "typeorm";
+import {
+    Column,
+    CreateDateColumn,
+    Entity, JoinTable,
+    ManyToOne,
+    OneToMany,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn
+} from "typeorm";
 import {Announcement} from "../announcements/announcements.entity";
+import {Volunteer} from "../volunteers/volunteers.entity";
 
 
 @Entity()
@@ -14,9 +23,6 @@ export class Feedback {
     @Column({type: "varchar", nullable: true})
     imageUrl: string;
 
-    @OneToMany(() => Announcement, announcement => announcement.feedbacks)
-    announcement: Announcement;
-
     @CreateDateColumn({type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
     createdAt: Date;
 
@@ -26,5 +32,14 @@ export class Feedback {
         onUpdate: "CURRENT_TIMESTAMP"
     })
     updatedAt: Date;
+
+    @ManyToOne(() => Announcement, announcement => announcement.feedbacks)
+    @JoinTable()
+    announcement: Announcement;
+
+    @ManyToOne(() => Volunteer, volunteer => volunteer.feedbacks)
+    @JoinTable()
+    author: Volunteer
+
 
 }
