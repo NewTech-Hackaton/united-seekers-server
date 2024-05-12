@@ -18,19 +18,19 @@ export class Announcement {
     id: string;
 
     @Column({type: "varchar", nullable: false})
-    firstName: string;
+    title: string;
 
     @Column({type: "varchar", nullable: false})
-    lastName: string;
-
-    @Column({type: "varchar", nullable: false})
-    middleName: string;
+    description: string;
 
     @Column({type: Date, nullable: false})
     loseDate: Date;
 
     @Column({type: "varchar"})
     lastSeenLocation: string;
+
+    @Column({type: "varchar", nullable: true, default: ""})
+    imageUrl: string;
 
     @CreateDateColumn({type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
     createdAt: Date;
