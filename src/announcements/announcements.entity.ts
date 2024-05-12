@@ -32,6 +32,9 @@ export class Announcement {
     @Column({type: "varchar", nullable: true, default: ""})
     imageUrl: string;
 
+    @Column({type: "boolean", default: false})
+    found: boolean;
+
     @CreateDateColumn({type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
     createdAt: Date;
 

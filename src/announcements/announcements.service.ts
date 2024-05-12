@@ -63,4 +63,15 @@ export class AnnouncementsService {
         })
     }
 
+    async setFoundPerson(volunteerId: string, announcementId: string) {
+        const volunteer = await this.volunteersService.findVolunteerById(volunteerId)
+        const announcement = await this.announcementRepository.findOne({
+            where: {id: announcementId, author: volunteer}
+        })
+
+        announcement.found = true
+
+        return await this.announcementRepository.save(announcement)
+    }
+
 }

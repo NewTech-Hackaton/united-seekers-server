@@ -5,7 +5,7 @@ import {
     Get,
     HttpException,
     HttpStatus,
-    Param,
+    Param, Patch,
     Post,
     Req, UploadedFile,
     UseGuards,
@@ -87,6 +87,19 @@ export class AnnouncementsController {
         try {
             const volunteerId = request.user.id
             return this.announcementsService.deleteAnnouncement(volunteerId, announcementId)
+        } catch (error) {
+            throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR)
+        }
+    }
+
+    @UseGuards(AuthGuard)
+    @Patch("/set-found/:announcementId")
+    async setFoundPerson(@Req() request,
+                         @Param("announcementId") announcementId: string)
+    {
+        try {
+            const volunteerId = request.user.id
+            return this.announcementsService.setFoundPerson(volunteerId, announcementId)
         } catch (error) {
             throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR)
         }
