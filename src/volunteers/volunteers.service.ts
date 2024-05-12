@@ -3,6 +3,7 @@ import {InjectRepository} from "@nestjs/typeorm";
 import {Volunteer} from "./volunteers.entity";
 import {CreateVolunteerDto} from "./dto/create-volunteer.dto";
 import {Repository} from "typeorm";
+import {FilesService} from "../files/files.service";
 
 @Injectable()
 export class VolunteersService {

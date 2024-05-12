@@ -1,6 +1,7 @@
 import {Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn} from "typeorm";
 import {Announcement} from "../announcements/announcements.entity";
 import {Token} from "../tokens/tokens.entity";
+import {Feedback} from "../feedbacks/feedbacks.entity";
 
 
 @Entity()
@@ -29,5 +30,8 @@ export class Volunteer {
 
     @OneToOne(() => Token, token => token.owner)
     token: Token
+
+    @OneToMany(() => Feedback, feedbacks => feedbacks.author)
+    feedbacks: Feedback[]
 
 }
