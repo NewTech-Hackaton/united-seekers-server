@@ -1,5 +1,9 @@
 import {DataSource, DataSourceOptions} from "typeorm";
 import * as dotenv from "dotenv"
+import {Volunteer} from "../volunteers/volunteers.entity";
+import {Announcement} from "../announcements/announcements.entity";
+import {Token} from "../tokens/tokens.entity";
+import {Feedback} from "../feedbacks/feedbacks.entity";
 dotenv.config()
 
 export const dataSourceOptions: DataSourceOptions = {
@@ -11,6 +15,7 @@ export const dataSourceOptions: DataSourceOptions = {
     database: process.env.POSTGRES_DB,
     synchronize: Boolean(process.env.TYPEORM_SYNCHRONIZE),
     migrations: [__dirname + process.env.TYPEORM_MIGRATIONS],
+    entities: [Volunteer, Token, Announcement, Feedback]
 
 }
 
